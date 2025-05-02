@@ -3,10 +3,9 @@ package com.ujizin.poupeai.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.ujizin.poupeai.features.home.HomeRoute
-import com.ujizin.poupeai.navigation.routes.PoupeAiRoute
+import com.ujizin.poupeai.features.home.homeNavigation
+import com.ujizin.poupeai.navigation.routes.HomeNavigation
 
 @Composable
 fun PoupeAiNavigation(
@@ -14,12 +13,11 @@ fun PoupeAiNavigation(
 ) {
     val navController = rememberNavController()
 
-    // TODO add routes
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = PoupeAiRoute.Home,
+        startDestination = HomeNavigation.Nav,
     ) {
-        composable<PoupeAiRoute.Home> { HomeRoute() }
+        homeNavigation()
     }
 }
