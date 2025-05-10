@@ -6,12 +6,14 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.room)
 }
 
 kotlin {
     androidTarget {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
+            jvmTarget.set(JvmTarget.JVM_17)
         }
     }
     
@@ -43,7 +45,7 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.navigation.compose)
-
+            implementation(libs.room)
             implementation(libs.koin.core)
 
             implementation(libs.bundles.koin.compose)
@@ -73,12 +75,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 }
 
 dependencies {
     debugImplementation(compose.uiTooling)
+    add("kspAndroid", libs.room.compiler)
+    add("kspIosSimulatorArm64", libs.room.compiler)
+    add("kspIosX64", libs.room.compiler)
+    add("kspIosArm64", libs.room.compiler)
 }
 
+room {
+    schemaDirectory("$projectDir/schemas")
+}
