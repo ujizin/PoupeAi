@@ -33,9 +33,11 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(libs.koin.android)
         }
 
         commonMain.dependencies {
+            // Presentation
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material)
@@ -45,10 +47,14 @@ kotlin {
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.navigation.compose)
-            implementation(libs.room)
-            implementation(libs.koin.core)
-
             implementation(libs.bundles.koin.compose)
+
+            // Data
+            implementation(libs.room)
+
+            // Core
+            implementation(libs.koin.core)
+            implementation(libs.kotlinx.datetime)
         }
     }
 }
@@ -63,6 +69,8 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
+
+        buildConfigField("int", "DATABASE_VERSION", "1")
     }
     packaging {
         resources {
@@ -77,6 +85,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 
