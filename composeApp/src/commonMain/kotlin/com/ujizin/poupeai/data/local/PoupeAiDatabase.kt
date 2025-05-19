@@ -4,14 +4,14 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.RoomDatabaseConstructor
 import androidx.room.TypeConverters
+import com.ujizin.poupeai.BuildKonfig.DATABASE_VERSION
 import com.ujizin.poupeai.data.local.converter.LocalDateTypeConverter
 import com.ujizin.poupeai.data.local.dao.ExpenseDao
 import com.ujizin.poupeai.data.local.entities.ExpenseEntity
 
-// TODO add buildKonfig to add version
 @Database(
     entities = [ExpenseEntity::class],
-    version = 1,
+    version = DATABASE_VERSION,
 )
 @TypeConverters(
     LocalDateTypeConverter::class
