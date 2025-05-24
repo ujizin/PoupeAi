@@ -6,11 +6,16 @@ import androidx.room.RoomDatabaseConstructor
 import androidx.room.TypeConverters
 import com.ujizin.poupeai.BuildKonfig.DATABASE_VERSION
 import com.ujizin.poupeai.data.local.converter.LocalDateTypeConverter
+import com.ujizin.poupeai.data.local.dao.CategoryDao
 import com.ujizin.poupeai.data.local.dao.ExpenseDao
+import com.ujizin.poupeai.data.local.entities.CategoryEntity
 import com.ujizin.poupeai.data.local.entities.ExpenseEntity
 
 @Database(
-    entities = [ExpenseEntity::class],
+    entities = [
+        ExpenseEntity::class,
+        CategoryEntity::class,
+    ],
     version = DATABASE_VERSION,
 )
 @TypeConverters(
@@ -18,6 +23,7 @@ import com.ujizin.poupeai.data.local.entities.ExpenseEntity
 )
 abstract class PoupeAiDatabase : RoomDatabase() {
     abstract fun getExpenseDao(): ExpenseDao
+    abstract fun getCategoryDao(): CategoryDao
 }
 
 @Suppress("NO_ACTUAL_FOR_EXPECT")

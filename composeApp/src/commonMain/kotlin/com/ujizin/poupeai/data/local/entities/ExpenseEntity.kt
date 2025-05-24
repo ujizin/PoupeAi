@@ -9,7 +9,7 @@ import kotlinx.datetime.LocalDate
 data class ExpenseEntity(
     @PrimaryKey(autoGenerate = true) val id: Long,
     @ColumnInfo(name = "amount") val amount: Long,
-    @ColumnInfo(name = "category_id") val categoryId: String,
+    @ColumnInfo(name = "category_id") val categoryId: Long,
     @ColumnInfo(name = "is_paid") val isPaid: Boolean = false,
     @ColumnInfo(name = "date") val date: LocalDate,
     @ColumnInfo(name = "description") val description: String? = null,

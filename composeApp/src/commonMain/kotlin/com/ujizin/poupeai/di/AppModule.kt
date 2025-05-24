@@ -1,6 +1,7 @@
 package com.ujizin.poupeai.di
 
 import com.ujizin.poupeai.data.local.PoupeAiDatabase
+import com.ujizin.poupeai.data.local.dao.CategoryDao
 import com.ujizin.poupeai.data.local.dao.ExpenseDao
 import com.ujizin.poupeai.features.home.ui.HomeViewModel
 import org.koin.core.module.Module
@@ -13,6 +14,7 @@ private val viewModelModule = module {
 
 private val daoModule = module {
     single<ExpenseDao> { get<PoupeAiDatabase>().getExpenseDao() }
+    single<CategoryDao> { get<PoupeAiDatabase>().getCategoryDao() }
 }
 
 expect fun databaseModule(): Module
