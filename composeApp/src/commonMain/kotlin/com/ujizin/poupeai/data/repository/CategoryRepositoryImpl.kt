@@ -11,10 +11,13 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Provided
+import org.koin.core.annotation.Single
 
+@Single
 class CategoryRepositoryImpl(
-    private val categoryDao: CategoryDao,
-    private val dispatcher: CoroutineDispatcher,
+    @Provided private val categoryDao: CategoryDao,
+    @Provided private val dispatcher: CoroutineDispatcher,
 ) : CategoryRepository {
 
     override fun getCategories(): Flow<List<Category>> = categoryDao.getAll()

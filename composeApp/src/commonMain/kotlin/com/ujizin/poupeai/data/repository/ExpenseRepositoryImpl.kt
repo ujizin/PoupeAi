@@ -11,11 +11,14 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
+import org.koin.core.annotation.Provided
+import org.koin.core.annotation.Single
 
+@Single
 class ExpenseRepositoryImpl(
-    private val expenseDao: ExpenseDao,
-    private val category: CategoryDao,
-    private val dispatcher: CoroutineDispatcher,
+    @Provided private val expenseDao: ExpenseDao,
+    @Provided private val category: CategoryDao,
+    @Provided private val dispatcher: CoroutineDispatcher,
 ) : ExpenseRepository {
 
     override fun getExpenses(): Flow<List<Expense>> = expenseDao.getExpenses().mapItem { expense ->
