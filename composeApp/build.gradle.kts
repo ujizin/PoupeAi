@@ -56,9 +56,46 @@ kotlin {
 
             // Core
             implementation(libs.koin.core)
+            api(libs.koin.annotation)
             implementation(libs.kotlinx.datetime)
         }
     }
+
+    // KSP Common sourceSet
+    sourceSets.named("commonMain").configure {
+        kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+    }
+}
+
+dependencies {
+    debugImplementation(compose.uiTooling)
+
+    add("kspAndroid", libs.room.compiler)
+    add("kspIosSimulatorArm64", libs.room.compiler)
+    add("kspIosX64", libs.room.compiler)
+    add("kspIosArm64", libs.room.compiler)
+
+    add("kspCommonMainMetadata", libs.koin.annotation.compiler)
+    add("kspAndroid", libs.koin.annotation.compiler)
+    add("kspIosSimulatorArm64", libs.koin.annotation.compiler)
+    add("kspIosX64", libs.koin.annotation.compiler)
+    add("kspIosArm64", libs.koin.annotation.compiler)
+}
+
+tasks {
+    configureEach {
+        if (this.name.contains("kspDebugKotlinAndroid")) {
+            this.dependsOn("kspCommonMainKotlinMetadata")
+        }
+    }
+}
+ksp {
+    arg("KOIN_USE_COMPOSE_VIEWMODEL","true")
+    arg("KOIN_CONFIG_CHECK","true")
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 android {
@@ -103,16 +140,4 @@ android {
     buildFeatures {
         buildConfig = true
     }
-}
-
-dependencies {
-    debugImplementation(compose.uiTooling)
-    add("kspAndroid", libs.room.compiler)
-    add("kspIosSimulatorArm64", libs.room.compiler)
-    add("kspIosX64", libs.room.compiler)
-    add("kspIosArm64", libs.room.compiler)
-}
-
-room {
-    schemaDirectory("$projectDir/schemas")
 }

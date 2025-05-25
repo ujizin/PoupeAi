@@ -1,16 +1,17 @@
 [versions]
-agp = "8.6.1"
+agp = "8.10.0"
 android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
 androidx-activityCompose = "1.10.1"
 androidx-lifecycle = "2.8.4"
 compose-multiplatform = "1.7.3"
-compose-navigation = "2.9.0-alpha17"
-kotlin = "2.1.20"
+compose-navigation = "2.9.0-beta01"
+kotlin = "2.1.21"
 kotlinx-datetime = "0.6.2"
-ksp = "2.1.20-2.0.1"
+ksp = "2.1.21-2.0.1"
 koin = "4.0.4"
+koin-annotations = "2.0.0"
 room = "2.7.1"
 buildkonfig = "0.17.1"
 
@@ -19,6 +20,8 @@ androidx-activity-compose = { module = "androidx.activity:activity-compose", ver
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
+koin-annotation = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
+koin-annotation-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koin" }
