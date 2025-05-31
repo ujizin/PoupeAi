@@ -27,4 +27,12 @@ class CategoryRepositoryImpl(
     override suspend fun saveCategory(category: Category): Unit = withContext(dispatcher) {
         categoryDao.insert(category.toEntity())
     }
+
+    override suspend fun updateCategory(category: Category) = withContext(dispatcher) {
+        categoryDao.update(category.toEntity())
+    }
+
+    override suspend fun deleteCategory(id: Long) = withContext(dispatcher) {
+        categoryDao.delete(id)
+    }
 }
