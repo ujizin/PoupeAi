@@ -14,4 +14,7 @@ data class ExpenseUI(
     val isRecurring: Boolean,
     val repeatCount: Int?,
     val repeatIntervalDays: Int?,
-)
+) {
+
+    val title = description ?: category.title
+}

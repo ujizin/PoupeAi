@@ -31,7 +31,7 @@ fun HomeScreen(uiState: HomeUiState) {
                 items = uiState.expenses,
                 key = { it.id },
             ) {
-                Text(it.description.orEmpty())
+                Text(it.title)
             }
         }
     }
