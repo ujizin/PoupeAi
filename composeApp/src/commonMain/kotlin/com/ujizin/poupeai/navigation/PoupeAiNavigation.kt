@@ -5,7 +5,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import com.ujizin.poupeai.features.home.homeNavigation
-import com.ujizin.poupeai.navigation.routes.HomeNavigation
+import com.ujizin.poupeai.features.settings.settingsNavigation
+import com.ujizin.poupeai.navigation.bottomnavigation.PoupeAiBottomNavigation
+import com.ujizin.poupeai.navigation.routes.HomeRoute
 
 @Composable
 fun PoupeAiNavigation(
@@ -13,11 +15,16 @@ fun PoupeAiNavigation(
 ) {
     val navController = rememberNavController()
 
-    NavHost(
+    PoupeAiBottomNavigation(
         modifier = modifier,
-        navController = navController,
-        startDestination = HomeNavigation.Nav,
+        navController = navController
     ) {
-        homeNavigation()
+        NavHost(
+            navController = navController,
+            startDestination = HomeRoute.Nav,
+        ) {
+            homeNavigation()
+            settingsNavigation()
+        }
     }
 }
