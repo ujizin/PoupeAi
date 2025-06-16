@@ -3,18 +3,16 @@ package com.ujizin.poupeai.navigation.bottomnavigation
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.BottomAppBar
-import androidx.compose.material.BottomNavigationItem
-import androidx.compose.material.FabPosition
-import androidx.compose.material.FloatingActionButton
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.FabPosition
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -31,32 +29,32 @@ fun PoupeAiBottomNavigation(
     Scaffold(
         modifier = modifier,
         bottomBar = {
-            BottomAppBar(cutoutShape = CircleShape, elevation = 22.dp) {
-                val navBackStackEntry by navController.currentBackStackEntryAsState()
-                val currentDestination = navBackStackEntry?.destination
-                BottomNavigation.items.forEach { item ->
-                    BottomNavigationItem(
-                        icon = { Icon(item.icon, contentDescription = item.name) },
-                        label = { Text(stringResource(item.titleRes)) },
-                        selected = currentDestination?.hierarchy?.any { it.hasRoute(item.route::class) } == true,
-                        onClick = {
-                            navController.navigate(item.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
+            BottomAppBar(
+                actions = {
+                    val navBackStackEntry by navController.currentBackStackEntryAsState()
+                    val currentDestination = navBackStackEntry?.destination
+                    BottomNavigation.items.forEach { item ->
+                        NavigationBarItem(
+                            icon = { Icon(item.icon, contentDescription = item.name) },
+                            label = { Text(stringResource(item.titleRes)) },
+                            selected = currentDestination?.hierarchy?.any { it.hasRoute(item.route::class) } == true,
+                            onClick = {
+                                navController.navigate(item.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
                                 }
-                                launchSingleTop = true
-                                restoreState = true
                             }
-                        }
-                    )
+                        )
+                    }
                 }
-            }
+            )
         },
-        floatingActionButtonPosition = FabPosition.Center,
-        isFloatingActionButtonDocked = true,
+        floatingActionButtonPosition = FabPosition.End,
         floatingActionButton = {
             FloatingActionButton(
-                shape = CircleShape,
                 onClick = {},
                 content = {
                     Icon(BottomNavigation.center.icon, contentDescription = null)
