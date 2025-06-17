@@ -8,8 +8,8 @@ fun PoupeAiTheme(
     content: @Composable () -> Unit,
 ) {
     MaterialTheme(
-        colorScheme = lightColors,
-    ) {
-        content()
-    }
+        colorScheme = LightColors,
+        typography = AppTypography,
+        content = content,
+    )
 }

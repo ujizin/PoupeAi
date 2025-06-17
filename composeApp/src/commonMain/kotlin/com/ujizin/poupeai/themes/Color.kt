@@ -12,7 +12,7 @@ object PoupeAiColor {
     val grey100 = Color(0xFFEAEFEF)
 }
 
-val lightColors = lightColorScheme(
+val LightColors = lightColorScheme(
     surfaceContainer = grey800,
     surface = grey800,
     onSurface = grey100,
