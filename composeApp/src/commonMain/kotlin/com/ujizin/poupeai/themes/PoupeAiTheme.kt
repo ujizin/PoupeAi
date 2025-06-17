@@ -7,7 +7,9 @@ import androidx.compose.runtime.Composable
 fun PoupeAiTheme(
     content: @Composable () -> Unit,
 ) {
-    MaterialTheme {
+    MaterialTheme(
+        colorScheme = lightColors,
+    ) {
         content()
     }
 }

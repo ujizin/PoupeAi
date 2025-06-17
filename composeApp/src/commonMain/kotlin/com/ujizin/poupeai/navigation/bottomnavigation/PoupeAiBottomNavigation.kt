@@ -37,6 +37,7 @@ fun PoupeAiBottomNavigation(
                         NavigationBarItem(
                             icon = { Icon(item.icon, contentDescription = item.name) },
                             label = { Text(stringResource(item.titleRes)) },
+                            alwaysShowLabel = false,
                             selected = currentDestination?.hierarchy?.any { it.hasRoute(item.route::class) } == true,
                             onClick = {
                                 navController.navigate(item.route) {
