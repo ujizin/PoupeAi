@@ -1,7 +1,6 @@
 package com.ujizin.poupeai.navigation.bottomnavigation
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -19,11 +18,9 @@ enum class BottomNavigation(
     val icon: ImageVector,
 ) {
     Home(Res.string.home, HomeRoute.Nav, Icons.Default.Home),
-    Add(Res.string.home, HomeRoute.Nav, Icons.Filled.Add),
     Settings(Res.string.settings, SettingsRoute.Nav, Icons.Default.Settings);
 
     companion object {
         val items: List<BottomNavigation> = listOf(Home, Settings)
-        val center: BottomNavigation = Add
     }
 }
